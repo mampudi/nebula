@@ -53,10 +53,15 @@ contract Nebula is VRFConsumerBase, KeeperCompatibleInterface{
 
 
   constructor() VRFConsumerBase(_sVrfCoordinator, _sLinkToken){
+    console.log("Constructor Logging: Nebula constructor starting...");
     _sCounter = 0;
+    console.log("Constructor Logging: Counter = %s", _sCounter);
     _sLastUpkeep = block.timestamp;
+    console.log("Constructor Logging: Last upkeep timestamp = %s", _sLastUpkeep);
     _sLotteryPercentage = 1; 
+    console.log("Constructor Logging: Lottery percentage = %s %", _sLotteryPercentage);
     _setOwner(msg.sender);
+    console.log("Constructor Logging: Contract owner = %s ", _sOwner);
   }
 
   /// @notice Set contract owner
@@ -91,6 +96,11 @@ contract Nebula is VRFConsumerBase, KeeperCompatibleInterface{
   //check if partner is registered
   function partnerRegistered(address _partner) public view returns (bool) {
     return _sPartners[_partner];
+  }
+
+  function getOwner() public view returns (address) {
+    console.log("getOwner Logging: Contract owner = %s ", _sOwner);
+    return _sOwner;
   }
 
   //partner pays to register a customer
